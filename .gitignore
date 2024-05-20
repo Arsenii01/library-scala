@@ -1,0 +1,10 @@
+.bsp
+.idea
+app-2.11
+logs
+project/target
+project/project
+target
+modules/db/target
+modules/scr/target
+modules/di/target

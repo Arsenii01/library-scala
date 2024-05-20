@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="create User table" author="arseniy">
+        <createTable tableName="User">
+            <column name="id" type="text">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create Token table" author="arseniy">
+        <createTable tableName="Token">
+            <column name="userId" type="text">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="token" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="Token"
+                                 baseColumnNames="userId"
+                                 constraintName="fk_userId_id_one_to_one"
+                                 referencedTableName="User"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

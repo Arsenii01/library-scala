@@ -1,0 +1,36 @@
+GET     /authors                    @controllers.AuthorController.findAll
+POST    /authors                    @controllers.AuthorController.insert
+DELETE  /authors/:id                @controllers.AuthorController.delete(id: String)
+PATCH   /authors                    @controllers.AuthorController.update
+GET     /authors/:id/listBooks      @controllers.AuthorController.listAuthorBooks(id: String)
+
+GET     /publishers                 @controllers.PublisherController.findAll
+POST    /publishers                 @controllers.PublisherController.insert()
+GET     /publishers/:id             @controllers.PublisherController.findById(id: String)
+PATCH   /publishers                 @controllers.PublisherController.update()
+DELETE  /publishers/:id             @controllers.PublisherController.delete(id: String)
+GET     /publishers/:id/listBooks   @controllers.PublisherController.listBooks(id: String)
+
+GET     /readers                    @controllers.ReaderController.findAll
+GET     /readers/:id                @controllers.ReaderController.findById(id: String)
+POST    /readers                    @controllers.ReaderController.insert
+PATCH   /readers                    @controllers.ReaderController.update
+DELETE  /readers/:id                @controllers.ReaderController.delete(id: String)
+
+GET     /books                      @controllers.BookController.findAll
+GET     /books/search               @controllers.BookController.search(query: String)
+GET     /books/:id                  @controllers.BookController.findById(id: String)
+POST    /books                      @controllers.BookController.insert
+DELETE  /books/:id                  @controllers.BookController.delete(id: String)
+PATCH   /books                      @controllers.BookController.update
+POST    /books/:id/set              @controllers.BookController.setOwner(id: String)
+POST    /books/:id/release          @controllers.BookController.release(id: String)
+GET     /books/:id/history          @controllers.BookController.getHistory(id: String)
+DELETE  /books/:id/history          @controllers.BookController.deleteAllHistory(id: String)
+
+
+POST    /login                      @auth.AuthController.login()
+POST    /logout                     @auth.AuthController.logout()
+POST    /getEncrypt                 @auth.AuthController.getEncypt()
+POST    /registerAdmin              @auth.RegisterController.registerAdmin
+POST    /register                   @auth.RegisterController.registerUser

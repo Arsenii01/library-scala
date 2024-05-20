@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    
+    <changeSet id="create BookHistory table" author="arseniy">
+        <createTable tableName="BookHistory">
+            <column name="id" type="text">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="bookId" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="readerId" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="takenAt" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="returnedAt" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="BookHistory"
+                                 baseColumnNames="bookId"
+                                 constraintName="fk_BookHistory_bookId"
+                                 referencedTableName="Book"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="BookHistory"
+                                 baseColumnNames="readerId"
+                                 constraintName="fk_BookHistory_readerId"
+                                 referencedTableName="Reader"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>
